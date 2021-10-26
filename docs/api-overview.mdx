@@ -6,15 +6,15 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# Introduction
+# API Overview
 
-Nocodepdf is an HTTP API that provides you with a simple document-in, document-out-based workflow that scales as you grow. Generate PDFs, convert documents to PDF, modify existing PDFs, and more. The Nocodepdf API was built to provide a quick and seamless way to automate HTML to PDF conversion in any application.
+**Nocodepdf** is an HTTP API that provides you with a simple document-in, document-out-based workflow that scales as you grow. Generate PDFs, convert documents to PDF, modify existing PDFs, and more. The Nocodepdf API was built to provide a quick and seamless way to automate HTML to PDF conversion in any application.
 
 Its lightweight RESTful infrastructure is based on an efficient combination of the most powerful PDF rendering engines available, making it the most cost-effective and reliable option for anyone looking to process small or large numbers of documents within short time windows.
 
 ## Supported Languages
 
-Nocodepdf API is a language-independent HTTP API, which means it supports all languages and platforms. This includes JavaScript, Python, Java, ASP.NET, C#, PHP, Rust, Go and more.
+Nocodepdf API is a language-independent HTTP API, which means it supports all languages and platforms. This includes **JavaScript, Python, Java, ASP.NET, C#, PHP, Rust, Go and more**.
 
 ## Endpoints
 The API is accessed by making HTTP requests to a specific version endpoint URL, in which GET or POST variables contain information about what you wish to access. Every endpoint is accessed via an SSL-enabled HTTPS.
@@ -34,6 +34,31 @@ Authorization: Bearer <YOUR_TOKEN>
 ```
 
 You can find you authentication token in your [Account Dashboard](http://dashboard.nocodepdf.com/home).
+
+## Rate Limits
+Unlike other companies charging higer price for increased concurrency level, Nocodepdf enforces a maximum volume of requests per minute for all clients. Unless contractually agreed otherwise, the maximum rate is **120 requests per minute**.
+
+Any request over the limit will return a **429 HTTP response**.
+
+## API Error Codes
+Standard HTTP error codes are returned in the case of a failure. `2xx` codes indicate a successful message; `4xx` codes indicate an error caused by information provided by the client, and `5xx` codes indicate an error on Nocodepdf's servers.
+
+### Status Codes
+
+| **Status Code** | **Name** | **Description**                                                                                                            |
+|-----------------|----------|----------------------------------------------------------------------------------------------------------------------------|
+| `200`           | Success  | Successful Response.                                                                                                       |
+
+### Error Codes
+
+| **Status Code** | **Name**              | **Description**                                                            |
+|-----------------|-----------------------|----------------------------------------------------------------------------|
+| `401`           | Unauthorized          | Invalid or missing access token.                                           |
+| `404`           | Not Found             | User requested resource which does not exist.                              |
+| `400`           | Bad Request           | Invalid request sent by user.                                              |
+| `422`           | Unprocessable Entity  | Request validation error. User sent some invalid parameter in the request. |
+| `429`           | Too many requests     | Rate limit reached.                                                        |
+| `500`           | Internal Server Error | An unexpected error occurred in our API.                                   |
 
 ## 3-Step Quickstart Guide
 

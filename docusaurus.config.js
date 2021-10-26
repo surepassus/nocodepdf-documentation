@@ -48,7 +48,7 @@ const path = require('path');
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'api-overview',
             position: 'left',
             label: 'Documentation',
           },
@@ -72,7 +72,7 @@ const path = require('path');
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/intro',
+                to: '/docs/api-overview',
               },
             ],
           },
