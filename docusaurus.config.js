@@ -1,19 +1,19 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require('path');
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (module.exports = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Nocodepdf',
+  tagline: 'Code less, Achieve more with our simple to use APIs',
+  url: 'https://nocodepdf.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-
+  organizationName: 'surepass', // Usually your GitHub org/user name.
+  projectName: 'nocodepdf-documentation', // Usually your repo name.
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -22,13 +22,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+            'https://nocodepdf.com/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -41,22 +40,26 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Nocodepdf logo',
+          src: 'https://nocodepdf.com/wp-content/uploads/2021/05/New-Project-24.png',
+          srcDark: 'https://nocodepdf.com/wp-content/uploads/2021/10/white.png'
         },
         items: [
           {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { 
+            href: 'https://nocodepdf.com/blog/', 
+            label: 'Blog', 
+            position: 'left' 
+          },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://nocodepdf.com/pricing/',
+            label: 'Try for Free',
             position: 'right',
           },
         ],
@@ -68,7 +71,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Documentation',
                 to: '/docs/intro',
               },
             ],
@@ -76,14 +79,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           {
             title: 'Community',
             items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
               {
                 label: 'Twitter',
                 href: 'https://twitter.com/docusaurus',
@@ -95,18 +90,19 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             items: [
               {
                 label: 'Blog',
-                to: '/blog',
+                href: 'https://nocodepdf.com/blog/',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
+                label: 'Pricing',
+                href: 'https://nocodepdf.com/pricing/',
+              }
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} <a href="https://surepass.us">Surepass, Inc.</a> Built with Docusaurus.`,
       },
       prism: {
+        additionalLanguages: ['http', 'uri', 'java', 'python'],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },

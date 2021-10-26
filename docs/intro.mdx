@@ -1,0 +1,240 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+# Introduction
+
+Nocodepdf is an HTTP API that provides you with a simple document-in, document-out-based workflow that scales as you grow. Generate PDFs, convert documents to PDF, modify existing PDFs, and more. The Nocodepdf API was built to provide a quick and seamless way to automate HTML to PDF conversion in any application.
+
+Its lightweight RESTful infrastructure is based on an efficient combination of the most powerful PDF rendering engines available, making it the most cost-effective and reliable option for anyone looking to process small or large numbers of documents within short time windows.
+
+## Supported Languages
+
+Nocodepdf API is a language-independent HTTP API, which means it supports all languages and platforms. This includes JavaScript, Python, Java, ASP.NET, C#, PHP, Rust, Go and more.
+
+## Endpoints
+The API is accessed by making HTTP requests to a specific version endpoint URL, in which GET or POST variables contain information about what you wish to access. Every endpoint is accessed via an SSL-enabled HTTPS.
+
+The stable HTTP endpoint for the latest version is:
+```url
+https://api.nocodepdf.com
+```
+
+## API Access Key & Authentication
+
+After signing up, every user is assigned a personal API Access Token - a unique "password" used to make requests to the Nocodepdf API.
+
+To authenticate with the API, simply set bearer token in HTTP header.   
+```http
+Authorization: Bearer <YOUR_TOKEN>
+```
+
+You can find you authentication token in your [Account Dashboard](http://dashboard.nocodepdf.com/home).
+
+## 3-Step Quickstart Guide
+
+### Step 1: Base URL
+Each API request has the following base URL.
+```uri
+https://api.nocodepdf.com/api/v1/templates
+```
+
+### Step 2: Required Parameters
+Simply authenticate with the API by adding **Authorization Bearer** token and providing either a URL using the `url` parameter or raw HTML code using the `html` parameter, and setting `type` parameter as `generate_output`.
+
+| **Parameter** | **Description**                                                                                                                       |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `type`        | Type of the operation. For generating PDF `type` should be `generate_output`. Could be either of `generate_output`/`render_template`. |
+| `url`         | The full URL (including the HTTP Protocol) of the website you want to convert to a PDF document, e.g. https://example.com/            |
+| `html`        | Raw HTML code you would like to convert to a PDF document.                                                                            |
+| `output`      | Enum `pdf`/`screenshot`. Type of output, we currently support PDF and Image(png or jpeg).                                             |                                                                       |
+
+### Step 3: Optional Parameters
+In addition to the few required parameters, there is a series of functionalities and parameters that can be used to fully configure and customize your PDF document. Find below a summary:
+
+| Parameter       | Description                                                                                                         |
+|-----------------|---------------------------------------------------------------------------------------------------------------------|
+| `full_page`     | Boolean `true`/`false`. The generated PDF should have multiple pages or one single large page with all the content. |
+| `format`        | String `A0`/`A1`/`A2`/`A3`/`A4`/`A5`/`A6`. Size of the page.                                                        |
+| `margin_top`    | Integer(min value 1). Top margin(in pixels).                                                                        |
+| `margin_bottom` | Integer(min value 1). Bottom margin(in pixels).                                                                     |
+| `margin_left`   | Integer(min value 1). Left margin(in pixels).                                                                       |
+| `margin_right`  | Integer(min value 1). Right margin(in pixels).                                                                      |
+| `page_range`    | Range of the pages to convert to PDF. E.g. `1-10` or `2-5`.                                                         |
+
+## Sample API requests
+
+### Generate PDF from URL
+<Tabs defaultValue="shell">
+<TabItem value="shell" label="cURL" default>
+
+```shell
+curl --location --request POST 'https://api.nocodepdf.com/api/v1/templates/render' \
+--header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "type": "generate_output",
+    "url": "https://example.com",
+    "pdf_render_options": {
+        "output": "pdf",
+        "full_page": false,
+        "format": "A4",
+        "margin_top": 10,
+        "margin_bottom": 10,
+        "margin_left": 10,
+        "margin_right": 10
+    }
+}'
+```
+
+</TabItem>
+<TabItem value="py" label="Python - Requests">
+
+```py
+import requests
+import json
+
+url = "https://api.nocodepdf.com/api/v1/templates/render"
+
+payload = {
+  "type": "generate_output",
+  "url": "https://example.com",
+  "pdf_render_options": {
+    "output": "pdf",
+    "full_page": False,
+    "format": "A4",
+    "margin_top": 10,
+    "margin_bottom": 10,
+    "margin_left": 10,
+    "margin_right": 10
+  }
+}
+headers = {
+  'Authorization': 'Bearer YOUR_TOKEN',
+}
+
+response = requests.request("POST", url, headers=headers, json=payload)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+
+### Generate PDF from HTML
+<Tabs defaultValue="shell">
+<TabItem value="shell" label="cURL" default>
+
+```shell
+curl --location --request POST 'https://api.nocodepdf.com/api/v1/templates/render' \
+--header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "type": "generate_output",
+  "html": "<h1>Testing HTML to PDF on Nocodepdf.com!</h1>",
+  "pdf_render_options": {
+      "output": "pdf",
+      "full_page": false,
+      "format": "A4",
+      "margin_top": 10,
+      "margin_bottom": 10,
+      "margin_left": 10,
+      "margin_right": 10
+  }
+}'
+```
+
+</TabItem>
+<TabItem value="py" label="Python - Requests">
+
+```py
+import requests
+import json
+
+url = "https://api.nocodepdf.com/api/v1/templates/render"
+
+payload = {
+  "type": "generate_output",
+  "html": "<h1>Testing HTML to PDF on Nocodepdf.com!</h1>",
+  "pdf_render_options": {
+    "output": "pdf",
+    "full_page": false,
+    "format": "A4",
+    "margin_top": 10,
+    "margin_bottom": 10,
+    "margin_left": 10,
+    "margin_right": 10
+  }
+}
+headers = {
+  'Authorization': 'Bearer YOUR_TOKEN',
+}
+
+response = requests.request("POST", url, headers=headers, json=payload)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+### Generate Image from URL
+<Tabs defaultValue="shell">
+<TabItem value="shell" label="cURL" default>
+
+```shell
+curl --location --request POST 'https://api.nocodepdf.com/api/v1/templates/render' \
+--header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "type": "generate_output",
+  "url": "https://example.com",
+  "pdf_render_options": {
+    "output": "screenshot",
+    "full_page": true,
+    "margin_top": 10,
+    "margin_bottom": 10,
+    "margin_left": 10,
+    "margin_right": 10
+  }
+}'
+```
+
+</TabItem>
+<TabItem value="py" label="Python - Requests">
+
+```py
+import requests
+import json
+
+url = "https://api.nocodepdf.com/api/v1/templates/render"
+
+payload = {
+  "type": "generate_output",
+  "url": "https://example.com",
+  "pdf_render_options": {
+    "output": "pdf",
+    "output": "screenshot",
+    "full_page": true,
+    "margin_top": 10,
+    "margin_bottom": 10,
+    "margin_left": 10,
+    "margin_right": 10
+  }
+}
+headers = {
+  'Authorization': 'Bearer YOUR_TOKEN',
+}
+
+response = requests.request("POST", url, headers=headers, json=payload)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
