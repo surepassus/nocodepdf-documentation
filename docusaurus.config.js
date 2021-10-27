@@ -106,5 +106,9 @@ const path = require('path');
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      algolia: {
+        apiKey: "test",
+        indexName: "test"
+      }
     }),
 });

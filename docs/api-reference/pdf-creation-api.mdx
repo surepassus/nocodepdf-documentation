@@ -1,0 +1,54 @@
+---
+sidebar_position: 1
+---
+
+# PDF APIs
+
+You can convert URL or raw HTML to PDF or Image via this API.
+
+## API Endpoint
+```uri
+api/v1/templates/render
+```
+
+## Request Body
+
+| **Parameter**        | **Type** | **Required**               | **Description**                                                                                                        |
+|----------------------|----------|----------------------------|------------------------------------------------------------------------------------------------------------------------|
+| `type`               | Enum     | Required                   | For PDF/Image creation API it should always be  `generate_output`                                                      |
+| `url`                | String   | Oneof <br/>`url`, `html`   | URL for which you want to generate PDF/Image. Should be a publicly accessible URL. For example  `https://example.com/` |
+| `html`               | String   | Oneof <br/> `url`, `html`  | Raw HTML which you want to convert to PDF or image.                                                                    |
+| `pdf_render_options` | Object   | Optional                   | [Refer Render Options](#optional-parameters)
+
+:::info
+Parameter `type` is always required. Out of `url` and `html` **only one** of the parameter is required.
+:::
+
+### PDF Render Options {#optional-parameters}
+
+| **Parameter**   | **Type**       | **Required** | **Default** | **Description**                                                                                                                       |
+|-----------------|----------------|--------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `output`        | Enum           | Optional     | `pdf`       | Output should be PDF or Image. Should be one of `pdf`, `screenshot`.                                                                  |
+| `scroll_pages`  | Boolean        | Optional     | false       | Scroll page down before rendering to trigger lazy loading elements.                                                                   |
+| `wait_for`      | Integer        | Optional     | -           | Number in ms to wait before render. **Min: 1**, **Max: 10000**                                                                        |
+| `landscape`     | Boolean        | Optional     | false       | Specifies if viewport is rendered in landscape mode. By default we render in portrait.                                                |
+| `page_range`    | Integer Range  | Optional     | null        | Paper ranges to render, e.g., `1-5`, `11-13`. Defaults to `null`, which means render all pages.                                       |
+| `format`        | Enum           | Optional     | `A0`        | Paper format. If set, takes priority over width or height options. **Supported formats** are `A0`, `A1`, `A2` ,`A3`, `A4`, `A5`, `A6` |
+| `full_page`     | Boolean        | Optional     | true        | Create PDF in a single page.                                                                                                          |
+| `width`         | Integer        | Optional     | -           | Rendered page width in pixels.                                                                                                        |
+| `height`        | Integer        | Optional     | -           | Rendered page height in pixels.                                                                                                       |
+| `margin_top`    | Integer        | Optional     | -           | Top margin in pixels.                                                                                                                 |
+| `margin_bottom` | Integer        | Optional     | -           | Bottom margin in pixels. **Min: 1**                                                                                                   |
+| `margin_left`   | Integer        | Optional     | -           | Left margin in pixels. **Min: 1**                                                                                                     |
+| `margin_right`  | Integer        | Optional     | -           | Right margin in pixels. **Min: 1**                                                                                                    |
+| `screenshot_x`  | Integer        | Optional     | -           | Specifies x-coordinate of top-left corner of clipping region of the page. **Only valid** when `output` parameter is `screenshot`.     |
+| `screenshot_y`  | Integer        | Optional     | -           | Specifies y-coordinate of top-left corner of clipping region of the page. **Only valid** when `output` parameter is `screenshot`.     |
+| `image_type`    | Enum           | Optional     | `png`       | Output format of rendered Image. **Supported values** are `png`, `jpeg`.                                                              |
+| `background`    | Boolean        | Optional     | true        | Print background graphics.                                                                                                            |                                                                                                                               |
+
+:::info
+* Parameter **`format`** has higher priority over **`width`** or **`height`** parameters.
+* Following parameters are **only valid** when **`output`** parameter's value is **`screenshot`**.
+    * `screenshot_x` and `screenshot_y`
+    * `image_type`
+:::
