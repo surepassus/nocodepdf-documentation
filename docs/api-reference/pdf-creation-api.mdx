@@ -18,13 +18,14 @@ api/v1/templates/render
 | `type`               | Enum     | Required                   | For PDF/Image creation API it should always be  `generate_output`                                                      |
 | `url`                | String   | Oneof <br/>`url`, `html`   | URL for which you want to generate PDF/Image. Should be a publicly accessible URL. For example  `https://example.com/` |
 | `html`               | String   | Oneof <br/> `url`, `html`  | Raw HTML which you want to convert to PDF or image.                                                                    |
-| `pdf_render_options` | Object   | Optional                   | [Refer Render Options](#optional-parameters)
+| `pdf_render_options` | Object   | Optional                   | [Refer Render Options Object](#optional-parameters)                                                                    |
 
 :::info
-Parameter `type` is always required. Out of `url` and `html` **only one** of the parameter is required.
+* Parameter **`type`** is always required. 
+* Out of **`url`** and **`html`** **only one** of the parameter is required.
 :::
 
-### PDF Render Options {#optional-parameters}
+### Render Options Object {#optional-parameters}
 
 | **Parameter**   | **Type**       | **Required** | **Default** | **Description**                                                                                                                       |
 |-----------------|----------------|--------------|-------------|---------------------------------------------------------------------------------------------------------------------------------------|
