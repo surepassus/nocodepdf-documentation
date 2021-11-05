@@ -40,6 +40,27 @@ Unlike other companies charging higer price for increased concurrency level, Noc
 
 Any request over the limit will return a **429 HTTP response**.
 
+## Responses
+Each response is wrapped in a `data` key. This means if you have a response, it will always be within the data field. We also include a `status_code`, `success` flag, `message_code` and `message` in the response of each request.
+
+```json
+{
+    "data": {
+        "client_id": "templates_dAzJzSNXfHbUFppshCdu",
+        "operation_type": "generate_output",
+        "uploaded": true,
+        "url": "https://example.com"
+    },
+    "status_code": 200,
+    "success": true,
+    "message": "Success",
+    "message_code": "success"
+}
+```
+:::info
+The `message`
+:::
+
 ## API Error Codes
 Standard HTTP error codes are returned in the case of a failure. `2xx` codes indicate a successful message; `4xx` codes indicate an error caused by information provided by the client, and `5xx` codes indicate an error on Nocodepdf's servers.
 
