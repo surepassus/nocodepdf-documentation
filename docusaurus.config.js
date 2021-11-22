@@ -7,8 +7,8 @@ const path = require('path');
 (module.exports = {
   title: 'Nocodepdf',
   tagline: 'Code less, Achieve more with our simple to use APIs',
-  url: 'https://documentation.nocodepdf.com/',
-  baseUrl: '/',
+  url: 'https://nocodepdf.com',
+  baseUrl: '/documentation/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'https://nocodepdf.com/wp-content/uploads/2021/11/favicon-2.png',
