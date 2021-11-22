@@ -7,11 +7,11 @@ const path = require('path');
 (module.exports = {
   title: 'Nocodepdf',
   tagline: 'Code less, Achieve more with our simple to use APIs',
-  url: 'https://nocodepdf.com/',
+  url: 'https://documentation.nocodepdf.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'https://nocodepdf.com/wp-content/uploads/2021/11/favicon-2.png',
   organizationName: 'surepass', // Usually your GitHub org/user name.
   projectName: 'nocodepdf-documentation', // Usually your repo name.
   presets: [
@@ -21,7 +21,7 @@ const path = require('path');
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
+          routeBasePath: '/'
         },
         blog: {
           showReadingTime: true,
@@ -72,7 +72,7 @@ const path = require('path');
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/api-overview',
+                to: '/',
               },
             ],
           },
@@ -81,7 +81,7 @@ const path = require('path');
             items: [
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/nocodepdf',
               },
             ],
           },
@@ -105,10 +105,6 @@ const path = require('path');
         additionalLanguages: ['http', 'uri', 'java', 'python'],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
-      algolia: {
-        apiKey: "test",
-        indexName: "test"
       }
     }),
 });
